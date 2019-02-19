@@ -1,0 +1,4 @@
+{
+	"Message" : "<speak>This is a text from <emphasis>Pinpoint</emphasis> using SSML. <break time='1s' /> I repeat. This is a text from <emphasis>Pinpoint</emphasis> using SSML.</speak>",
+	"PhoneNumber" : "[Destination Phone Number]"
+}

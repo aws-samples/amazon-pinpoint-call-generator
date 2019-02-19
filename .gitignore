@@ -1,4 +1,5 @@
 .DS_Store
 src/node_modules/
 packaged.yaml
+src/package-lock.json
 
