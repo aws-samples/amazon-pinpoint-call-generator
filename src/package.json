@@ -1,0 +1,12 @@
+{
+  "name": "pippoint-call-generator",
+  "version": "1.0.0",
+  "description": "Serverless application designed to trigger outbound voice calls through Pinpoint.",
+  "main": "src/index.js",
+  "repository": "https://github.com/aws-samples/cookiecutter-aws-sam-hello-nodejs",
+  "author": "Tom Moore",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "aws-sdk": "^2.388.0"
+  }
+}

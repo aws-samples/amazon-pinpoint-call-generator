@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    Serverless application to trigger outbound calls from Pinpoint.
+    
+Globals:
+    Function:
+        Timeout: 30
+
+
+Resources:
+
+  CallGeneratorFunctionIamRole: 
+    Type: AWS::IAM::Role
+    Properties: 
+      RoleName: PinpointCallGenerator-Role
+      AssumeRolePolicyDocument: 
+        Version: '2012-10-17'
+        Statement: 
+        - Effect: Allow
+          Principal: 
+            Service: lambda.amazonaws.com
+          Action: 
+          - sts:AssumeRole
+      Path: '/'
+      Policies: 
+      - PolicyName: logs
+        PolicyDocument: 
+          Statement: 
+          - Effect: Allow
+            Action: 
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+      - PolicyName: Pinpoint
+        PolicyDocument: 
+          Statement: 
+          - Effect: Allow
+            Action: 
+            - sms-voice:*
+            Resource: '*'
+
+  CallGeneratorFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: src/
+      Handler: app.lambda_handler
+      Runtime: nodejs8.10
+      FunctionName: PinpointCallGenerator
+      Role: !GetAtt CallGeneratorFunctionIamRole.Arn
+      Environment: 
+        Variables:
+          LongCode: '[YOUR_LONG_CODE_HERE]'
+          Language: 'en-US' #Update this for different language
+          Voice: 'Joanna'   #Update this for different voices
+            
+
+#Outputs:
+
+    CallGeneratorLambdaFunction:
+      Description: "Lambda function to trigger calls"
+      Value: !GetAtt CallGeneratorFunction.Arn
+
+    CallGeneratorFunctionIamRole:
+      Description: "IAM Role created for this function"
+      Value: !GetAtt CallGeneratorFunctionIamRole.Arn
