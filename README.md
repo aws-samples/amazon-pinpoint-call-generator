@@ -16,6 +16,8 @@ This serverless application requires that you have an AWS Pinpoint project set u
 You will need to specify the long code in the template.yaml file before deploing this package.
 The Long code must be owned by the same account as Pinpoint and your SAM package are deployed in. 
 
+Pinpoint has a default limit of $1 for putbound voice calls. You will need to have this limit increased to use this code in production. Limit increates are requested through AWS Support.
+
 Optionally update the language code, and the voice to be used to generate the speach via AWS Polly. 
 The list of Polly voices can be found here:
 https://docs.aws.amazon.com/polly/latest/dg/voicelist.html

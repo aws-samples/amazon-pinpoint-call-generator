@@ -22,6 +22,12 @@ var pinpointsmsvoice = new AWS.PinpointSMSVoice({apiVersion: '2018-09-05'});
 
 function triggerCall (eventData) {
     return new Promise (resolve => {
+        /*
+        * VoiceID and Language are set from the Polly options:
+        * https://docs.aws.amazon.com/polly/latest/dg/API_Voice.html
+        * 
+        * OriginationPhoneNumber Must be the long code set up in Amazon Pinpoint.
+        */
         var parms = {
             Content: {
                 SSMLMessage: {
