@@ -46,7 +46,7 @@ Resources:
     Properties:
       CodeUri: src/
       Handler: app.lambda_handler
-      Runtime: nodejs10.x
+      Runtime: nodejs14.x
       FunctionName: PinpointCallGenerator
       Role: !GetAtt CallGeneratorFunctionIamRole.Arn
       Environment: 
